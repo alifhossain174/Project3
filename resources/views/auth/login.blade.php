@@ -3,7 +3,7 @@
 @section('content')
     <div class="wrap-login100">
         <div class="login100-form-title" style="background-image: url({{ url('/') }}/login_assets/images/bg-01.jpg);">
-            <span class="login100-form-title-1" style="-webkit-text-stroke: 2px black; text-transform: none;">
+            <span class="login100-form-title-1" style="-webkit-text-stroke: 2px black; text-transform: none; font-size: 25px">
                 Login Email: alifhossain174@gmail.com<br>
                 Login Password : 12345678
             </span>
