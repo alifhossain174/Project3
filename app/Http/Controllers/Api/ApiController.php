@@ -10,7 +10,7 @@ class ApiController extends Controller
 {
     const AUTHORIZATION_TOKEN = 'INEJEUDYSBW7583837NUDD752022';
 
-    public function userChangePassword(Request $request){
+    public function userList(Request $request){
         if ($request->header('Authorization') == ApiController::AUTHORIZATION_TOKEN) {
 
             $data = User::orderBy('id', 'desc')->paginate(15);

@@ -10,6 +10,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::group(['namespace' => 'Api'], function () {
 
-    Route::Post('user/list', [App\Http\Controllers\Api\ApiController::class, 'userList']);
+    Route::get('user/list', [App\Http\Controllers\Api\ApiController::class, 'userList']);
 
 });
