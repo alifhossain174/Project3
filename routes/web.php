@@ -19,8 +19,10 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::group(['middleware' => 'auth'], function () {
 
+    // show users and filter data using one route only
     Route::get('/users/lists', [App\Http\Controllers\UserController::class, 'usersList'])->name('usersList');
 
+    // other routes for extra tasks
     Route::get('/delete/user/{id}', [App\Http\Controllers\UserController::class, 'deleteUsers']);
     Route::get('/get/user/info/{id}', [App\Http\Controllers\UserController::class, 'getUserInfo']);
     Route::post('/user/info/update', [App\Http\Controllers\UserController::class, 'userInfoUpdate']);

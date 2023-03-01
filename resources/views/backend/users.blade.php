@@ -30,7 +30,6 @@
         tfoot {
             display: table-header-group !important;
         }
-
         tfoot th{
             text-align: center;
         }
@@ -47,41 +46,42 @@
                         <b>View All Users</b>
                     </div>
                     <div class="card-body" style="border-left: 1px solid #ADBC7A !important; border-bottom: 1px solid #ADBC7A !important;">
+                        <div class="table-responsive">
+                            <label id="customFilter">
+                                <select id="webcam_datatable_filter" class="form-control form-control-sm custom-cls" style="width: 80px; margin-right: 5px">
+                                    <option value="" selected> Date </option>
+                                    <option value="2023-03-01">2023-03-01</option>
+                                    <option value="2023-03-02">2023-03-02</option>
+                                </select>
+                            </label>
 
-                        <label id="customFilter">
-                            <select id="webcam_datatable_filter" class="form-control form-control-sm custom-cls" style="width: 80px; margin-right: 5px">
-                                <option value="" selected> Date </option>
-                                <option value="2023-03-01">2023-03-01</option>
-                                <option value="2023-03-02">2023-03-02</option>
-                            </select>
-                        </label>
+                            <table class="table table-striped data-table w-100">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" class="text-center">SL</th>
+                                        <th scope="col" class="text-center">Name</th>
+                                        <th scope="col" class="text-center">Email</th>
+                                        <th scope="col" class="text-center">Contact</th>
+                                        <th scope="col" class="text-center">Created</th>
+                                        <th scope="col" class="text-center">Action</th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                    <tr>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </tfoot>
 
-                        <table class="table table-striped data-table w-100">
-                            <thead>
-                                <tr>
-                                    <th scope="col" class="text-center">SL</th>
-                                    <th scope="col" class="text-center">Name</th>
-                                    <th scope="col" class="text-center">Email</th>
-                                    <th scope="col" class="text-center">Contact</th>
-                                    <th scope="col" class="text-center">Created</th>
-                                    <th scope="col" class="text-center">Action</th>
-                                </tr>
-                            </thead>
-                            <tfoot>
-                                <tr>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                </tr>
-                            </tfoot>
+                                <tbody>
 
-                            <tbody>
-
-                            </tbody>
-                        </table>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

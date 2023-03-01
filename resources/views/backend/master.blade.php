@@ -79,7 +79,7 @@
                                 <a href="{{ route('logout') }}" class="nav-link logout"
                                     onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">
-                                    <span class="d-none d-sm-inline-block">Logout</span>
+                                    <span>Logout</span>
                                     <i class="fa fa-sign-out"></i>
                                 </a>
                             </li>
