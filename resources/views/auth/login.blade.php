@@ -4,7 +4,7 @@
     <div class="wrap-login100">
         <div class="login100-form-title" style="background-image: url({{ url('/') }}/login_assets/images/bg-01.jpg);">
             <span class="login100-form-title-1" style="-webkit-text-stroke: 2px black; text-transform: none;">
-                Login Email: admin@gmail.com<br>
+                Login Email: alifhossain174@gmail.com<br>
                 Login Password : 12345678
             </span>
         </div>
@@ -14,7 +14,7 @@
 
             <div class="wrap-input100 validate-input m-b-26" data-validate="Email is required">
                 <span class="label-input100">Email</span>
-                <input id="email" type="email" class="input100 @error('email') is-invalid @enderror" name="email" value="admin@gmail.com" placeholder="Enter Email" required autocomplete="email" autofocus>
+                <input id="email" type="email" class="input100 @error('email') is-invalid @enderror" name="email" value="alifhossain174@gmail.com" placeholder="Enter Email" required autocomplete="email" autofocus>
                 <span>
                     @error('email')
                         <span role="alert" style="font-size: 14px;font-weight: 300;color: red;">

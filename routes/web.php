@@ -10,8 +10,18 @@ Route::get('/', function () {
 Auth::routes([
     'login' => true,
     'register' => false, // Registration Routes...
-    'reset' => false, // Password Reset Routes...
-    'verify' => false, // Email Verification Routes...
+    'reset' => true, // Password Reset Routes...
+    'verify' => true, // Email Verification Routes...
 ]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Route::group(['middleware' => 'auth'], function () {
+
+    Route::get('/users/lists', [App\Http\Controllers\UserController::class, 'usersList'])->name('usersList');
+
+    Route::get('/delete/user/{id}', [App\Http\Controllers\UserController::class, 'deleteUsers']);
+    Route::get('/get/user/info/{id}', [App\Http\Controllers\UserController::class, 'getUserInfo']);
+
+});
