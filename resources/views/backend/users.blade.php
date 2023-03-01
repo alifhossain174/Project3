@@ -27,6 +27,14 @@
         table.dataTable tbody td:nth-child(6){
             text-align: center !important;
         }
+        tfoot {
+            display: table-header-group !important;
+        }
+
+        tfoot th{
+            text-align: center;
+        }
+
     </style>
 @endsection
 
@@ -39,6 +47,15 @@
                         <b>View All Users</b>
                     </div>
                     <div class="card-body" style="border-left: 1px solid #ADBC7A !important; border-bottom: 1px solid #ADBC7A !important;">
+
+                        <label id="customFilter">
+                            <select id="webcam_datatable_filter" class="form-control form-control-sm custom-cls" style="width: 80px; margin-right: 5px">
+                                <option value="" selected> Date </option>
+                                <option value="2023-03-01">2023-03-01</option>
+                                <option value="2023-03-02">2023-03-02</option>
+                            </select>
+                        </label>
+
                         <table class="table table-striped data-table w-100">
                             <thead>
                                 <tr>
@@ -50,6 +67,17 @@
                                     <th scope="col" class="text-center">Action</th>
                                 </tr>
                             </thead>
+                            <tfoot>
+                                <tr>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </tfoot>
+
                             <tbody>
 
                             </tbody>
@@ -61,7 +89,7 @@
     </div>
 
 
-
+    {{-- user update modal --}}
     <div class="modal fade" id="ajaxModel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -97,6 +125,8 @@
 
 
 @section('footer_js')
+
+    {{-- js code for data table --}}
     <script src="{{ url('dataTable') }}/js/jquery.validate.js"></script>
     <script src="{{ url('dataTable') }}/js/jquery.dataTables.min.js"></script>
     <script src="{{ url('dataTable') }}/js/dataTables.bootstrap4.min.js"></script>
@@ -112,9 +142,53 @@
                 {data: 'contact', name: 'contact'},
                 {data: 'created_at', name: 'created_at'},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
-            ]
+            ],
+            initComplete: function() {
+                this.api().columns([1, 2, 3]).every(function() {
+                    var column = this;
+                    var input = document.createElement("input");
+                    $(input).appendTo($(column.footer()).empty())
+                        .on('change', function() {
+                            var val = $.fn.dataTable.util.escapeRegex($(this).val());
+                            column.search(val ? val : '', true, false).draw();
+                        });
+                });
+
+                this.api().columns([4]).every(function() {
+                    var column = this;
+                    var select = $('<select style="width:100%"><option value=""></option></select>')
+                        .appendTo($(column.footer()).empty())
+                        .on('change', function() {
+                            var val = $.fn.dataTable.util.escapeRegex(
+                                $(this).val()
+                            );
+                            column
+                                .search(val ? '^' + val + '$' : '', true, false)
+                                .draw();
+                        });
+                    column.each(function() {
+                        select.append('<option value="2023-03-01">' + '2023-03-01' + '</option>')
+                        select.append('<option value="2023-03-02">' + '2023-03-02' + '</option>')
+                    });
+                });
+            }
         });
 
+        $(".dataTables_filter").append($("#customFilter"));
+        $('#customFilter').on('change', function(){
+            var filter_value = $("#webcam_datatable_filter").val();
+            var liveurl = "{{ url('users/lists') }}/"+filter_value;
+            table.ajax.url(liveurl).load();
+        });
+    </script>
+
+    {{-- js code for user crud --}}
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
 
         $('body').on('click', '.editBtn', function () {
             var user_id = $(this).data('id');
@@ -127,7 +201,6 @@
                 $('#contact').val(data.contact);
             })
         });
-
 
         $('#saveBtn').click(function (e) {
             e.preventDefault();
@@ -149,7 +222,6 @@
                 }
             });
         });
-
 
         $('body').on('click', '.deleteBtn', function () {
             var user_id = $(this).data("id");

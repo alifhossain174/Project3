@@ -23,5 +23,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/delete/user/{id}', [App\Http\Controllers\UserController::class, 'deleteUsers']);
     Route::get('/get/user/info/{id}', [App\Http\Controllers\UserController::class, 'getUserInfo']);
+    Route::post('/user/info/update', [App\Http\Controllers\UserController::class, 'userInfoUpdate']);
+    Route::get('/users/lists/{filter_value}', [App\Http\Controllers\UserController::class, 'usersFiltredList']);
 
 });
