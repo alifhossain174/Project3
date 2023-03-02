@@ -46,7 +46,7 @@
                 <!-- Small Brand information, appears on minimized sidebar-->
                 <div class="sidenav-header-logo">
                     <a href="{{ url('/home') }}" class="brand-small text-center">
-                        <strong>TM</strong>
+                        <strong>P3</strong>
                     </a>
                 </div>
             </div>

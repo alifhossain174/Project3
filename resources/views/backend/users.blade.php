@@ -95,6 +95,9 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title" id="modelHeading"></h4>
+                    <button type="button" class="close" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
                 <div class="modal-body">
                     <form id="productForm" name="productForm" class="form-horizontal">
@@ -238,6 +241,10 @@
                     }
                 });
             }
+        });
+
+        $('.close').click(function (e) {
+            $('#ajaxModel').modal('hide');
         });
     </script>
 @endsection
